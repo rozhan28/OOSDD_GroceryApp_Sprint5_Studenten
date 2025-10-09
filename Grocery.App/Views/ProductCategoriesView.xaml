@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Grocery.App.Views.ProductCategoriesView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:Grocery.App.ViewModels"
+    xmlns:groceryCore="clr-namespace:Grocery.Core.Models;assembly=Grocery.Core"
+    x:DataType="vm:ProductCategoriesViewModel"
+    Title="Producten per categorie">
+
+    <VerticalStackLayout Padding="10">
+        <Label Text="Producten in deze categorie" FontAttributes="Bold" FontSize="18" Margin="0,0,0,10"/>
+
+        <CollectionView ItemsSource="{Binding Products}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="groceryCore:Product">
+                    <Grid Padding="8">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <Label Text="{Binding Name}" VerticalOptions="Center"/>
+                        <Label Text="{Binding Price, StringFormat='€{0:F2}'}"
+                               Grid.Column="1"
+                               VerticalOptions="Center"
+                               HorizontalOptions="End"/>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </VerticalStackLayout>
+</ContentPage>
